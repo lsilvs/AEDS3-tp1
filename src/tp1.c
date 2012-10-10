@@ -1,5 +1,5 @@
 /*
-*	Produto de Kronecker
+*	Problema de Grafos
 *		Autor: Lucas Silvestre (2010054665)
 *		Data: 09/10/2012
 */
@@ -12,8 +12,8 @@ int main(int argc, char *argv[]) {
 	// Declara as variáveis
 	char * inputFileName = argv[1];
 	char * outputFileName = argv[2];
-	int ** matrizA, ** matrizB, ** matrizResult;
-	int numInstancias, numCidades, numLinhasA, numLinhasB, numLinhasResult, numColunasA, numColunasB, numColunasResult, i, j, k, l, m;
+	int ** matriz;
+	int numInstancias, numCidades, i, j, k, l, m;
 
 	// Abrir arquivo de entrada
 	FILE * inputFileOpen;
@@ -37,16 +37,15 @@ int main(int argc, char *argv[]) {
 	fprintf(outputFileOpen, "%d\n", numInstancias);
 
 	for(m = 0; m < numInstancias; m++) {
-		// Lê linhas e colunas da matriz A
+		// Lê o número de cidades
 		fscanf(inputFileOpen, "%d", &numCidades);	
 
-		// Preenche a matriz A
-		matrizA = preenche_matriz(inputFileOpen, numCidades, numCidades);
-
+		// Preenche a matriz
+		matriz = preenche_matriz(inputFileOpen, numCidades, numCidades);
 
 
 		// Libera as matrizes já utilizadas
-		desaloca_matriz(matrizA, numCidades);
+		desaloca_matriz(matriz, numCidades);
 
 	}
 
