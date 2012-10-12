@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-// #include "funcoes.h"
+#include "funcoes.h"
 #include "funcoes_grafo.h"
 
 int main(int argc, char *argv[]) {
@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
 	char * inputFileName = argv[1];
 	char * outputFileName = argv[2];
 	int ** matriz;
-	int numInstancias, numCidades, peso, i, j, k, l, m;
+	int numInstancias, numCidades, peso, numPedidos, i, j, k, l, m;
 
 	// Abrir arquivo de entrada
 	FILE * inputFileOpen;
@@ -57,13 +57,12 @@ int main(int argc, char *argv[]) {
 			}
 		}
 
+		printf("%d - %d\n", i, cenario1(&Grafo));
+
+		for (j = 0; j < numCidades; ++j) {
+			fscanf(inputFileOpen, "%d", &numPedidos);
+		}
 	}
-
-	// ImprimeGrafo(&Grafo);
-
-	Raiz = 1;
-	
-	printf("%d\n", Dijkstra(&Grafo, &Raiz));
 
 
 	// Retorna 0 se conseguiu fechar o arquivo com sucesso

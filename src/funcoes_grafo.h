@@ -3,7 +3,7 @@
 #ifndef FUNCOES_GRAFO_H_INCLUDED
 #define FUNCOES_GRAFO_H_INCLUDED
 
-#include "structs.c"
+#include "structs.h"
 
 void FGVazio(TipoGrafo *Grafo);
 

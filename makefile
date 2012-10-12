@@ -10,10 +10,10 @@ OBJS =  src/tp1.c src/funcoes_grafo.c src/funcoes.c
 APPNAME = tp1
 
 #valgrind
-VALGRIND = valgrind -v --tool=memcheck --leak-check=full --show-reachable=yes
+VALGRIND = valgrind --tool=memcheck --leak-check=yes --show-reachable=yes
 
 #arquivos
-INPUTFILE = input.txt
+INPUTFILE = doc/exemplos/dense.in
 OUTPUTFILE = output.txt
 
 release: ; $(GCC) $(OPTMIZE) $(LIBS) $(OBJS) -o $(APPNAME)

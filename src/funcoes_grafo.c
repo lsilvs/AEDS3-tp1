@@ -191,8 +191,12 @@ int Dijkstra(TipoGrafo *Grafo, TipoValorVertice *Raiz) {
 
 	for (u = 0; u < Grafo->NumVertices; u++) {
 		soma += P[u];
-		printf("%d\n", P[u]);
 	}
+
+	free(P);
+	free(Pos);
+	free(Antecessor);
+	free(Itensheap);
 
 	return soma;
 }
