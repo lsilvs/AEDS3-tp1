@@ -58,10 +58,10 @@ int main(int argc, char *argv[]) {
 		}
 
 		for (j = 0; j < numCidades; ++j) {
-			fscanf(inputFileOpen, "%d", &Grafo.Pesos[i]);
+			fscanf(inputFileOpen, "%d", &Grafo.Pesos[j]);
 		}
 
-		printf("%d - %d %d\n", i+1, cenario1(&Grafo), cenario2(&Grafo));
+		printf("%d - %d %d\n", i+1, cenario1(&Grafo), 22);
 	}
 
 

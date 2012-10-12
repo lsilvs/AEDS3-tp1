@@ -4,7 +4,7 @@
 #include<stdlib.h>
 #include<limits.h>
 
-#define MAXNUMVERTICES  100
+#define MAXNUMVERTICES  1000
 #define MAXNUMARESTAS   4500
 #define FALSE           0
 #define TRUE            1

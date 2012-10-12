@@ -144,7 +144,7 @@ void DiminuiChaveInd(TipoIndice i, TipoPeso ChaveNova, TipoItem *A,
 	}
 } 
 
-int Dijkstra(TipoGrafo *Grafo, TipoValorVertice *Raiz) {
+TipoPeso * Dijkstra(TipoGrafo *Grafo, TipoValorVertice *Raiz) {
 	//TipoPeso P[MAXNUMVERTICES + 1];
 
 	TipoPeso * P = (TipoPeso *) malloc((Grafo->NumVertices+1) * sizeof(TipoPeso));
@@ -189,14 +189,9 @@ int Dijkstra(TipoGrafo *Grafo, TipoValorVertice *Raiz) {
 		} 
 	}
 
-	for (u = 0; u < Grafo->NumVertices; u++) {
-		soma += P[u];
-	}
-
-	free(P);
 	free(Pos);
 	free(Antecessor);
 	free(Itensheap);
 
-	return soma;
+	return P;
 }

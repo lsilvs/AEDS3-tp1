@@ -34,6 +34,6 @@ TipoItem RetiraMinInd(TipoItem *A,  TipoPeso *P,  TipoValorVertice *Pos);
 void DiminuiChaveInd(TipoIndice i, TipoPeso ChaveNova, TipoItem *A, 
              TipoPeso *P,  TipoValorVertice *Pos);
 
-int Dijkstra(TipoGrafo *Grafo, TipoValorVertice *Raiz);
+TipoPeso * Dijkstra(TipoGrafo *Grafo, TipoValorVertice *Raiz);
 
 #endif
