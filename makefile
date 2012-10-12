@@ -4,7 +4,7 @@ OPTMIZE = -g3 -O3
 LIBS = -lc
 
 #Objetos
-OBJS =  src/tp1.c src/funcoes.c
+OBJS =  src/tp1.c src/funcoes_grafo.c src/funcoes.c 
 
 # Nome do aplicativo
 APPNAME = tp1
@@ -19,7 +19,7 @@ OUTPUTFILE = output.txt
 release: ; $(GCC) $(OPTMIZE) $(LIBS) $(OBJS) -o $(APPNAME)
 
 clean:
-	rm -f $(APPNAME) $(INPUTFILE)
+	rm -f $(APPNAME) $(OUTPUTFILE)
 
 run:
 	make

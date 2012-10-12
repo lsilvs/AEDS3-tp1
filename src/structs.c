@@ -27,7 +27,7 @@ typedef struct TipoItem {
 	TipoPeso Chave;
 } TipoItem;
 
-typedef TipoItem TipoVetor[MAXNUMVERTICES + 1];
+typedef TipoItem TipoVetor;
 
 TipoApontador Aux;
 int  i, NArestas;

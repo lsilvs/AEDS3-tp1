@@ -6,7 +6,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "funcoes.h"
+// #include "funcoes.h"
+#include "funcoes_grafo.h"
 
 int main(int argc, char *argv[]) {
 	// Declara as variáveis
@@ -58,10 +59,11 @@ int main(int argc, char *argv[]) {
 
 	}
 
-	ImprimeGrafo(&Grafo);
+	// ImprimeGrafo(&Grafo);
 
 	Raiz = 1;
-	Dijkstra(&Grafo, &Raiz);
+	
+	printf("%d\n", Dijkstra(&Grafo, &Raiz));
 
 
 	// Retorna 0 se conseguiu fechar o arquivo com sucesso
