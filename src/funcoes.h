@@ -7,4 +7,6 @@
 
 TipoValorVertice cenario1(TipoGrafo *Grafo);
 
+TipoValorVertice cenario2(TipoGrafo *Grafo);
+
 #endif

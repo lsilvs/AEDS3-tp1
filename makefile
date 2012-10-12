@@ -13,7 +13,7 @@ APPNAME = tp1
 VALGRIND = valgrind --tool=memcheck --leak-check=yes --show-reachable=yes
 
 #arquivos
-INPUTFILE = doc/exemplos/dense.in
+INPUTFILE = doc/exemplos/5instancias.in
 OUTPUTFILE = output.txt
 
 release: ; $(GCC) $(OPTMIZE) $(LIBS) $(OBJS) -o $(APPNAME)
