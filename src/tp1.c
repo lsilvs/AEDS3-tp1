@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
 	char * inputFileName = argv[1];
 	char * outputFileName = argv[2];
 	int ** matriz;
-	int numInstancias, numCidades, i, j, k, l, m;
+	int numInstancias, numCidades, peso, i, j, k, l, m;
 
 	// Abrir arquivo de entrada
 	FILE * inputFileOpen;
@@ -36,18 +36,33 @@ int main(int argc, char *argv[]) {
 	// Escreve o número de instâncias no arquivo de saída
 	fprintf(outputFileOpen, "%d\n", numInstancias);
 
-	for(m = 0; m < numInstancias; m++) {
+	for(i = 0; i < numInstancias; i++) {
 		// Lê o número de cidades
-		fscanf(inputFileOpen, "%d", &numCidades);	
+		fscanf(inputFileOpen, "%d", &numCidades);
 
-		// Preenche a matriz
-		matriz = preenche_matriz(inputFileOpen, numCidades, numCidades);
+		Grafo.NumVertices = numCidades;
+		Grafo.NumArestas = 0;
+		//FGVazio(&Grafo);
 
-
-		// Libera as matrizes já utilizadas
-		desaloca_matriz(matriz, numCidades);
+		for (k = 0; k < numCidades; ++k) {
+			for (l = 0; l < numCidades; ++l) {
+				V1 = k;
+				V2 = l;
+				fscanf(inputFileOpen, "%d", &Peso);
+				InsereAresta(&V1, &V2, &Peso, &Grafo);
+				if (Peso > 0) {
+					Grafo.NumArestas++;
+				}
+			}
+		}
 
 	}
+
+	ImprimeGrafo(&Grafo);
+
+	Raiz = 1;
+	Dijkstra(&Grafo, &Raiz);
+
 
 	// Retorna 0 se conseguiu fechar o arquivo com sucesso
 	if(fclose(inputFileOpen) == 0) {
