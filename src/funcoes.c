@@ -21,7 +21,6 @@ TipoValorVertice cenario1(TipoGrafo *Grafo) {
 	for(i = 1; i < Grafo->NumVertices; i++) {
 		raiz++;
 		aux = 0;
-		//aux = Dijkstra(Grafo, &raiz);
 
 		P = Dijkstra(Grafo, &raiz);;
 
@@ -29,11 +28,8 @@ TipoValorVertice cenario1(TipoGrafo *Grafo) {
 			aux += P[u];
 		}
 
-		// printf("%d %d\n", aux, dist); getchar();
-
 		if(aux < dist){
 		  indver = i;
-		  // printf("%d\n", indver);
 		  dist = aux;
 		}
 	}
@@ -66,11 +62,8 @@ TipoValorVertice cenario2(TipoGrafo *Grafo) {
 			aux += (float) P[u]*Grafo->Pesos[u];
 		}
 
-		// printf("%d %d\n", aux, dist); getchar();
-
 		if(aux < dist){
 		  indver = i;
-		  // printf("%d\n", indver);
 		  dist = aux;
 		}
 	}
@@ -86,7 +79,7 @@ TipoValorVertice cenario3(TipoGrafo *Grafo) {
 
     TipoPeso * P;
 
-    for (i = 0; i < Grafo->NumVertices; i++){
+    for (i = 0; i < Grafo->NumVertices; i++) {
     	maior = 0;
 
         P = Dijkstra(Grafo, &raiz);
@@ -105,5 +98,46 @@ TipoValorVertice cenario3(TipoGrafo *Grafo) {
     }
 
     return result+1;
+}
+
+float cenario_prejuizo(TipoGrafo *Grafo) {
+
+    TipoValorVertice raiz = 0;
+
+    int soma = 0, maior = 0, peso_maior = 0, soma_menor2 = 9999999, soma_aux2 = 0, aux = 999999, soma_maior = 0, i, j;
+    float result, soma_aux = 0.0, soma_menor = 99999999.99;
+
+    TipoPeso * P;
+
+    for (i = 0; i < Grafo->NumVertices; i++){
+
+    	soma = 0;
+    	maior = 0;
+
+        P = Dijkstra(Grafo, &raiz);
+        for (j = 0; j < Grafo->NumVertices; j++) {
+            soma += P[j];
+            if (maior < P[j]) {
+				soma_maior = soma;
+				maior = P[j];
+			}
+        }
+
+        if (soma < soma_menor) {
+        	soma_menor = soma;
+       	}
+
+       	if (maior < aux) {
+        	aux = maior;
+        	soma_aux = soma;
+        }
+
+        raiz++;
+    }
+
+    result = (float) (soma_aux*100/soma_menor)-100;
+
+    return result;
+
 }
 

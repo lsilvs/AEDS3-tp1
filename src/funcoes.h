@@ -11,4 +11,6 @@ TipoValorVertice cenario2(TipoGrafo *Grafo);
 
 TipoValorVertice cenario3(TipoGrafo *Grafo);
 
+float cenario_prejuizo(TipoGrafo *Grafo);
+
 #endif
