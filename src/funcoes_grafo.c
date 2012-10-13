@@ -147,9 +147,9 @@ void DiminuiChaveInd(TipoIndice i, TipoPeso ChaveNova, TipoItem *A,
 TipoPeso * Dijkstra(TipoGrafo *Grafo, TipoValorVertice *Raiz) {
 	//TipoPeso P[MAXNUMVERTICES + 1];
 
-	TipoPeso * P = (TipoPeso *) malloc((Grafo->NumVertices+1) * sizeof(TipoPeso));
+	// TipoPeso * P = (TipoPeso *) malloc((Grafo->NumVertices+1) * sizeof(TipoPeso));
 	TipoValorVertice * Pos = (TipoValorVertice *) malloc((Grafo->NumVertices+1) * sizeof(TipoValorVertice));
-	
+	TipoPeso P[Grafo->NumVertices+1];
 	long * Antecessor = (long *) malloc((Grafo->NumVertices+1) * sizeof(long));
 	short * Itensheap = (short *) malloc((Grafo->NumVertices+1) * sizeof(short));
 

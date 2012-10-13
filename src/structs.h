@@ -20,6 +20,7 @@ typedef struct TipoGrafo {
 	int NumVertices;
 	int NumArestas;
 	int Pesos[MAXNUMVERTICES + 1];
+	int Pesos2[MAXNUMVERTICES + 1];
 } TipoGrafo;
 
 typedef TipoValorVertice TipoApontador;

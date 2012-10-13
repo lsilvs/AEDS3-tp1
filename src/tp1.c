@@ -61,7 +61,7 @@ int main(int argc, char *argv[]) {
 			fscanf(inputFileOpen, "%d", &Grafo.Pesos[j]);
 		}
 
-		printf("%d - %d %d\n", i+1, cenario1(&Grafo), 22);
+		printf("%d - %d %d %d\n", i+1, cenario1(&Grafo), cenario2(&Grafo), cenario3(&Grafo));
 	}
 
 
