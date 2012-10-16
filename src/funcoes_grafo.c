@@ -4,6 +4,38 @@
 #include <stdlib.h>
 #include "funcoes_grafo.h"
 
+TipoGrafo alocaGrafo(int numVertices) {
+	int i;
+    TipoGrafo grafo;
+    if(numVertices < 1){
+        printf("Erro!");
+        exit(1);
+    }
+
+    grafo.NumVertices = numVertices;
+    grafo.NumArestas = 0;
+    grafo.Pedidos = (int*) malloc(numVertices * sizeof(int));
+    grafo.Mat = (TipoPeso **) malloc(numVertices * sizeof(TipoPeso*));
+
+    for (i = 0 ; i < numVertices ; i++) {
+    	grafo.Mat[i] = (TipoPeso *) malloc(numVertices * sizeof(TipoPeso));
+    }
+
+    return grafo;
+}
+
+void liberaGrafo(TipoGrafo grafo) {
+	int i;
+	for (i = 0 ; i < grafo.NumVertices ; i++) {
+		free(grafo.Mat[i]);
+    }
+
+    grafo.NumVertices = 0;
+    grafo.NumArestas = 0;
+    free(grafo.Mat);
+    free(grafo.Pedidos);
+}
+
 void FGVazio(TipoGrafo *Grafo) {
 	int  i, j;
  	for (i = 0; i <= Grafo->NumVertices; i++) 
@@ -12,12 +44,12 @@ void FGVazio(TipoGrafo *Grafo) {
 }
 
 void InsereAresta(TipoValorVertice *V1, TipoValorVertice *V2, TipoPeso *Peso, 
-          TipoGrafo *Grafo) {
+			TipoGrafo *Grafo) {
 	Grafo->Mat[*V1][*V2] = *Peso;
 }
 
 short  ExisteAresta(TipoValorVertice Vertice1, TipoValorVertice Vertice2, 
-            TipoGrafo *Grafo) {
+        	TipoGrafo *Grafo) {
 	return (Grafo->Mat[Vertice1][Vertice2] > 0);
 }
 
@@ -92,14 +124,14 @@ void RefazInd(TipoIndice Esq, TipoIndice Dir, TipoItem *A, TipoPeso *P,
 		}
 
 		if (P[x.Chave] <= P[A[j].Chave])
-			goto L999;
+			break;
 		
 		A[i] = A[j]; Pos[A[j].Chave] = i;
 		i = j;
 		j = i * 2;
 	}
 
-	L999: A[i] = x; Pos[x.Chave] = i;
+	A[i] = x; Pos[x.Chave] = i;
 } 
 
 void Constroi(TipoItem *A,  TipoPeso *P,  TipoValorVertice *Pos) {
@@ -145,9 +177,6 @@ void DiminuiChaveInd(TipoIndice i, TipoPeso ChaveNova, TipoItem *A,
 } 
 
 TipoPeso * Dijkstra(TipoGrafo *Grafo, TipoValorVertice *Raiz) {
-	//TipoPeso P[MAXNUMVERTICES + 1];
-
-	// TipoPeso * P = (TipoPeso *) malloc((Grafo->NumVertices+1) * sizeof(TipoPeso));
 	TipoValorVertice * Pos = (TipoValorVertice *) malloc((Grafo->NumVertices+1) * sizeof(TipoValorVertice));
 	TipoPeso P[Grafo->NumVertices+1];
 	long * Antecessor = (long *) malloc((Grafo->NumVertices+1) * sizeof(long));
@@ -157,12 +186,16 @@ TipoPeso * Dijkstra(TipoGrafo *Grafo, TipoValorVertice *Raiz) {
 	TipoVetor A[Grafo->NumVertices+1];
 	TipoValorVertice u, v;
 	TipoItem temp;
+	TipoApontador Aux;
+	short FimListaAdj;
+	TipoPeso Peso;
 
 	for (u = 0; u <= Grafo->NumVertices; u++) {
 		/*Constroi o heap com todos os valores igual a INFINITO*/
 		Antecessor[u] = -1;
 		P[u] = INFINITO;
-		A[u+1].Chave = u;   /*Heap a ser construido*/
+		/*Heap a ser construido*/
+		A[u+1].Chave = u;
 		Itensheap[u] = TRUE;
 		Pos[u] = u + 1;
 	}

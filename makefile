@@ -13,7 +13,8 @@ APPNAME = tp1
 VALGRIND = valgrind --tool=memcheck --leak-check=yes --show-reachable=yes
 
 #arquivos
-INPUTFILE = doc/exemplos/5instancias.in
+INPUTFILE = doc/exemplos/dense.in
+OUTPUTTEST = doc/exemplos/dense.out
 OUTPUTFILE = output.txt
 
 release: ; $(GCC) $(OPTMIZE) $(LIBS) $(OBJS) -o $(APPNAME)
@@ -24,6 +25,11 @@ clean:
 run:
 	make
 	./$(APPNAME) $(INPUTFILE) $(OUTPUTFILE)
+
+test:
+	make
+	./$(APPNAME) $(INPUTFILE) $(OUTPUTFILE)
+	diff $(OUTPUTFILE) $(OUTPUTTEST)
 
 time:
 	gcc $(GERAMATRIZES) -o geraMatrizes

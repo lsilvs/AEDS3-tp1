@@ -13,8 +13,10 @@ int main(int argc, char *argv[]) {
 	// Declara as variáveis
 	char * inputFileName = argv[1];
 	char * outputFileName = argv[2];
-	int ** matriz;
-	int numInstancias, numCidades, peso, numPedidos, i, j, k, l, m;
+	int numInstancias, numCidades, i, j, k, l;
+	TipoValorVertice V1, V2;
+	TipoPeso peso;
+	TipoGrafo grafo;
 
 	// Abrir arquivo de entrada
 	FILE * inputFileOpen;
@@ -34,34 +36,32 @@ int main(int argc, char *argv[]) {
 
 	// Lê o número de instâncias
 	fscanf(inputFileOpen, "%d", &numInstancias);
-	// Escreve o número de instâncias no arquivo de saída
-	fprintf(outputFileOpen, "%d\n", numInstancias);
 
 	for(i = 0; i < numInstancias; i++) {
 		// Lê o número de cidades
 		fscanf(inputFileOpen, "%d", &numCidades);
 
-		Grafo.NumVertices = numCidades;
-		Grafo.NumArestas = 0;
-		//FGVazio(&Grafo);
-
+		// Preenche o grafo
+		grafo = alocaGrafo(numCidades);
 		for (k = 0; k < numCidades; ++k) {
 			for (l = 0; l < numCidades; ++l) {
 				V1 = k;
 				V2 = l;
-				fscanf(inputFileOpen, "%d", &Peso);
-				InsereAresta(&V1, &V2, &Peso, &Grafo);
-				if (Peso > 0) {
-					Grafo.NumArestas++;
+				fscanf(inputFileOpen, "%d", &peso);
+				InsereAresta(&V1, &V2, &peso, &grafo);
+				if (peso > 0) {
+					grafo.NumArestas++;
 				}
 			}
 		}
 
 		for (j = 0; j < numCidades; ++j) {
-			fscanf(inputFileOpen, "%d", &Grafo.Pesos[j]);
+			fscanf(inputFileOpen, "%d", &grafo.Pedidos[j]);
 		}
 
-		printf("%d - %d %d %d %.2f\n", i+1, cenario1(&Grafo), cenario2(&Grafo), cenario3(&Grafo), cenario_prejuizo(&Grafo));
+		fprintf(outputFileOpen, "%d %d %d %.2f\n", cenario1(&grafo), cenario2(&grafo), cenario3(&grafo), cenario_prejuizo(&grafo));
+
+		liberaGrafo(grafo);
 	}
 
 

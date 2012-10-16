@@ -4,25 +4,19 @@
 #include<stdlib.h>
 #include<limits.h>
 
-#define MAXNUMVERTICES  1000
-#define MAXNUMARESTAS   4500
 #define FALSE           0
 #define TRUE            1
 #define INFINITO       INT_MAX
 
-
-typedef int TipoValorVertice;
-
 typedef int TipoPeso;
-
 typedef struct TipoGrafo {
-	TipoPeso Mat[MAXNUMVERTICES + 1][MAXNUMVERTICES + 1];
+	TipoPeso ** Mat;
+	int * Pedidos;
 	int NumVertices;
 	int NumArestas;
-	int Pesos[MAXNUMVERTICES + 1];
-	int Pesos2[MAXNUMVERTICES + 1];
 } TipoGrafo;
 
+typedef int TipoValorVertice;
 typedef TipoValorVertice TipoApontador;
 typedef int TipoIndice;
 typedef struct TipoItem {
@@ -31,14 +25,5 @@ typedef struct TipoItem {
 
 typedef TipoItem TipoVetor;
 
-TipoApontador Aux;
-int  i, NArestas;
-short FimListaAdj;
-TipoValorVertice V1, V2, Adj;
-TipoPeso Peso;
-TipoGrafo Grafo;
-TipoValorVertice NVertices;
-TipoIndice n;   /*Tamanho do heap*/
-TipoValorVertice Raiz;
-
-
+/*Tamanho do heap*/
+TipoIndice n;

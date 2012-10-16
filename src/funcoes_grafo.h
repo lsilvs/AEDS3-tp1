@@ -5,6 +5,8 @@
 
 #include "structs.h"
 
+TipoGrafo alocaGrafo(int numVertices);
+
 void FGVazio(TipoGrafo *Grafo);
 
 void InsereAresta(TipoValorVertice *V1, TipoValorVertice *V2, TipoPeso *Peso, 
