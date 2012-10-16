@@ -24,16 +24,14 @@ clean:
 
 run:
 	make
+	clear
 	./$(APPNAME) $(INPUTFILE) $(OUTPUTFILE)
 
 test:
-	make
-	./$(APPNAME) $(INPUTFILE) $(OUTPUTFILE)
+	make run
 	diff $(OUTPUTFILE) $(OUTPUTTEST)
 
 time:
-	gcc $(GERAMATRIZES) -o geraMatrizes
-	./geraMatrizes $(INPUTFILE) 10
 	make
 	time ./$(APPNAME) $(INPUTFILE) $(OUTPUTFILE)
 
