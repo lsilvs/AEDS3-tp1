@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "funcoes.h"
 #include "funcoes_grafo.h"
 
@@ -22,22 +23,29 @@ int main(int argc, char *argv[]) {
 	FILE * inputFileOpen;
 	if ((inputFileOpen = fopen(inputFileName, "r")) == NULL) {
 		printf("Nao foi possivel abrir o arquivo.\n");
-	} else {
-		printf("Aberto arquivo de entrada %s \n", inputFileName);
 	}
 
 	// Abrir arquivo de saída
 	FILE * outputFileOpen;
 	if ((outputFileOpen = fopen(outputFileName, "w")) == NULL) {
 		printf("Nao foi possivel abrir o arquivo.\n");
-	} else {
-		printf("Aberto arquivo de entrada %s \n", outputFileName);
+	}
+
+	// Abrir arquivo de testes
+	char * testFileName = "test.out";
+	FILE * testFileOpen;
+	if ((testFileOpen = fopen(testFileName, "w")) == NULL) {
+		printf("Nao foi possivel abrir o arquivo.\n");
 	}
 
 	// Lê o número de instâncias
 	fscanf(inputFileOpen, "%d", &numInstancias);
 
+
 	for(i = 0; i < numInstancias; i++) {
+
+		clock_t start = clock();
+
 		// Lê o número de cidades
 		fscanf(inputFileOpen, "%d", &numCidades);
 
@@ -62,16 +70,22 @@ int main(int argc, char *argv[]) {
 		fprintf(outputFileOpen, "%d %d %d %.2f\n", cenario1(&grafo), cenario2(&grafo), cenario3(&grafo), cenario_prejuizo(&grafo));
 
 		liberaGrafo(grafo);
+
+		fprintf(testFileOpen, "%f\n", ((double)clock() - start) / CLOCKS_PER_SEC);
 	}
 
 
 	// Retorna 0 se conseguiu fechar o arquivo com sucesso
-	if(fclose(inputFileOpen) == 0) {
-		printf("%s fechado com sucesso\n", inputFileName);
+	if(fclose(inputFileOpen) != 0) {
+		printf("Erro ao tentar fechar o arquivo %s\n", inputFileName);
 	}
 
-	if(fclose(outputFileOpen) == 0) {
-		printf("%s fechado com sucesso\n", outputFileName);
+	if(fclose(outputFileOpen) != 0) {
+		printf("Erro ao tentar fechar o arquivo %s\n", inputFileName);
+	}
+
+	if(fclose(testFileOpen) != 0) {
+		printf("Erro ao tentar fechar o arquivo %s\n", inputFileName);
 	}
 
 	return 0;

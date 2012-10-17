@@ -8,7 +8,7 @@
 TipoValorVertice cenario1(TipoGrafo *Grafo) {
 
 	TipoValorVertice raiz = 0;
-	int i, u, dist = 0, aux = 0, indver = 0;
+	int i, u, dist = 0, aux = 0, result = 0;
 	TipoPeso * P = Dijkstra(Grafo, &raiz);
 
 	for (u = 0; u < Grafo->NumVertices; u++) {
@@ -19,25 +19,25 @@ TipoValorVertice cenario1(TipoGrafo *Grafo) {
 		raiz++;
 		aux = 0;
 
-		P = Dijkstra(Grafo, &raiz);;
+		P = Dijkstra(Grafo, &raiz);
 
 		for (u = 0; u < Grafo->NumVertices; u++) {
 			aux += P[u];
 		}
 
 		if(aux < dist){
-		  indver = i;
+		  result = i;
 		  dist = aux;
 		}
 	}
 
-	return indver + 1;
+	return result + 1;
 }
 
 TipoValorVertice cenario2(TipoGrafo *Grafo) {
 
 	TipoValorVertice raiz = 0;
-	int i, u, indver = 0;
+	int i, u, result = 0;
 	float dist = 0.0, aux = 0.0;
 
 	TipoPeso * P = Dijkstra(Grafo, &raiz);
@@ -58,12 +58,12 @@ TipoValorVertice cenario2(TipoGrafo *Grafo) {
 		}
 
 		if(aux < dist){
-		  indver = i;
+		  result = i;
 		  dist = aux;
 		}
 	}
 
-	return indver + 1;
+	return result + 1;
 }
 
 
