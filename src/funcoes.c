@@ -49,7 +49,6 @@ TipoValorVertice cenario2(TipoGrafo *Grafo) {
 	for(i = 1; i < Grafo->NumVertices; i++) {
 		raiz++;
 		aux = 0;
-		//aux = Dijkstra(Grafo, &raiz);
 
 		P = Dijkstra(Grafo, &raiz);;
 
